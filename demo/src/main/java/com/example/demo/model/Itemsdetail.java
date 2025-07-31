@@ -1,18 +1,22 @@
 package com.example.demo.model;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Table;
+import org.springframework.data.annotation.Id;
 import org.springframework.stereotype.Component;
 
-@Component
+
+@Entity
 @Table(name = "Items")
 public class Itemsdetail {
+    @jakarta.persistence.Id
+    @Id
     @GeneratedValue
     private int id;
     @Column(nullable = false)
-    private String productid;
-    @Column(nullable = false)
+
     private String productname;
     @Column(nullable = false)
     private String productprice;
@@ -29,9 +33,17 @@ public class Itemsdetail {
     @Column(nullable = false)
     private String email;
     @Column(nullable = false)
-    private String productmaterial;
-    @Column(nullable = false)
     private String productcolor;
+    @Column(nullable = true)
+    private int discountpirce;
+
+
+public int getdp(){
+    return discountpirce;
+}
+public void setdp(int  discountpirce){
+    this.discountpirce=discountpirce;
+}
 
     public int getId() {
         return id;
@@ -39,12 +51,7 @@ public class Itemsdetail {
     public void setId(int id) {
         this.id = id;
     }
-    public String getProductid() {
-        return productid;
-    }
-    public void setProductid(String productid) {
-        this.productid = productid;
-    }
+
     public String getProductname() {
         return productname;
     }
@@ -93,12 +100,7 @@ public class Itemsdetail {
     public void setEmail(String email) {
         this.email = email;
     }
-    public String getProductmaterial() {
-        return productmaterial;
-    }
-    public void setProductmaterial(String productmaterial) {
-        this.productmaterial = productmaterial;
-    }
+
     public String getProductcolor() {
         return productcolor;
     }
@@ -107,6 +109,9 @@ public class Itemsdetail {
     }
     @Override
     public String toString() {
-        return "Itemsdetail{" + "id=" + id + ", productid=" + productid + ", productname=" + productname + ", productprice=" + productprice + ", productquantity=" + productquantity + ", image=" + image + ", productdescription=" + productdescription + ", category=" + category + ", productbrand=" + productbrand + ", email=" + email + ", productmaterial=" + productmaterial + ", productcolor=" + productcolor + '}';
+        return "Itemsdetail{" + "id=" + id + ", productid="  + ", productname=" + productname + ", productprice=" + productprice + ", productquantity=" + productquantity + ", image=" + image + ", productdescription=" + productdescription + ", category=" + category + ", productbrand=" + productbrand + ", email=" + email + ", productmaterial=" + ", productcolor=" + productcolor + '}';
     }
+
+
+
 }
