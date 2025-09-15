@@ -1,32 +1,29 @@
 import { useState } from "react";
-import { ContentContext } from "../context/Content";
+import { AuthContext } from "../context/Content";
 import { useContext } from "react";
 import axios from 'axios';
 function Signup(){
     const [username,setUsername] = useState('');
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
+    const [role,setRole] = useState('');
+    const {signup,message} = useContext(AuthContext);
     
     async function handleClick(event){
         event.preventDefault();
-        const data = {
-            username,
-            email,
-            password
-        }
-        const response = await axios.post('http://localhost:3000/api/signup',data,{withCredentials: true})
-        console.log(response);
-        console.log('successfull')
+       
+        signup(username,email,password,role);
     }
     
     
     return (
         <>
+        
         <div className="flex items-center justify-center min-h-screen p-4">
         <div className="w-full max-w-sm bg-white rounded-lg shadow-lg p-6 md:p-8">
 
 <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
-    Naya Account Banayein! ✨
+    Naya Account Banayein! ✨{message}
 </h2>
 
 
@@ -53,9 +50,9 @@ function Signup(){
 
     <div className="mb-6">
         <label htmlFor="confirm-password" className="block text-gray-700 text-sm font-semibold mb-2">
-            Password Confirm Karein
+            role
         </label>
-        <input type="password" id="confirm-password" className="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Password dobara daalein"/>
+        <input type="text" id="confirm-password" value={role} onChange={(e)=>setRole(e.target.value)}className="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Password dobara daalein"/>
     </div>
 
     <div className="flex items-center justify-between">

@@ -4,13 +4,14 @@ import { useState } from "react";
 import Apparelhover from "../hovercomponent/Apparelhover";
 import Accessorieshover from "../hovercomponent/Accessorieshover";
 import { useContext } from "react";
-import { ContentContext } from "../context/Content";
-import Logout from "./Logout";
+import { AuthContext } from "../context/Content";
+
 import Profile from "./Profile";
 function Navbar(){
-    const {user}= useContext(ContentContext);
+    const {userauth}= useContext(AuthContext);
     const [hover,setHover]=useState(false);
     const [hover1,setHover1]=useState(false);
+    
     function handleHover(){
         setHover(!hover);
     }
@@ -42,7 +43,7 @@ function Navbar(){
          {hover && <Accessorieshover/>}
         </button>
     </nav>
-{user? <Profile/>:<div> <Link to="/login" className="relative"><IoLogInOutline size={30} className="items-center absolute top-0 right-0"></IoLogInOutline></Link></div> }
+{userauth? <Profile/>:<div> <Link to="/login" className="relative"><IoLogInOutline size={30} className="items-center absolute top-0 right-0"></IoLogInOutline></Link></div> }
  </div>
  </>
  )

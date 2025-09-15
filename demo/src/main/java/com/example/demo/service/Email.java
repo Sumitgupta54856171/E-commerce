@@ -19,4 +19,7 @@ public class Email {
          message.setText(body);
          mailSender.send(message);
     }
+
+    public static class Authservice {
+    }
 }

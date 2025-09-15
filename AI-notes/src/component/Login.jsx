@@ -2,8 +2,10 @@ import { useState } from "react";
 import axios from 'axios';
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import { redirect } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../context/Content";
 function Login(){
-
+const {login} = useContext(AuthContext);
 const [email,setEmail] =useState('');
 const [password,setPassword] = useState('');
 const [visible,setVisible] =useState(false);
@@ -12,22 +14,7 @@ const handleClick =()=>{
 }
 async function handleSubmit(event){
     event.preventDefault();
-    const data = {
-        email,
-        password
-    }
-    const response = await axios.post('http://localhost:3000/api/login',data, {withCredentials: true})
-    console.log(response);
-    console.log('successfull')
-    const token = response.data.user;
-    localStorage.setItem('token',token);
-    if(token){
-      
-        redirect('/');
-    }
-    else{
-       redirect('./login')
-    }
+    login(email,password);
 }
 return(<>
 <div className="flex items-center justify-center min-h-screen p-4">
