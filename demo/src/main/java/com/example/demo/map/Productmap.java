@@ -26,6 +26,18 @@ public class Productmap {
         return productrepositery.findById(id)
                 .map(this::mapdtoproduct);
     }
+    public List<Productdto> getsearchproducts(String query){
+        if(query.isEmpty()){
+            throw new IllegalArgumentException("query is empty");
+        }
+        List<Itemsdetail> items = productrepositery.findByCategory(query);
+        if(items.isEmpty()){
+            throw new IllegalArgumentException("no product found");
+        }
+        return items.stream()
+                .map(this::mapdtoproduct)
+                .collect(Collectors.toList());
+    }
     public Productdto mapdtoproduct(Itemsdetail itemsdetail){
 Productdto pro = new Productdto();
 pro.setId(itemsdetail.getId());

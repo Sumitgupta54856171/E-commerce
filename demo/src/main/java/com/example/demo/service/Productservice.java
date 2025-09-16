@@ -57,5 +57,9 @@ private Productmap productmap;
   public ResponseEntity<Optional<Productdto>> getproductbyid(Integer id){
       return ResponseEntity.ok(productmap.getproductbyid(id));
   }
+  public ResponseEntity<List<Productdto>> getsearchproduct(String query){
+    return ResponseEntity.ok(productmap.getsearchproducts(query));
+  }
+
 
 }

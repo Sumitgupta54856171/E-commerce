@@ -33,4 +33,9 @@ private Productservice productservice;
     public Optional<Productdto> getproductbyid(@PathVariable("id") int id){
         return productmap.getproductbyid(id);
     }
+    @GetMapping("/search/{query}")
+    public ResponseEntity<List<Productdto>> getallproduct(@PathVariable("query") String query){
+        return productservice.getsearchproduct(query);
+    }
+
 }
