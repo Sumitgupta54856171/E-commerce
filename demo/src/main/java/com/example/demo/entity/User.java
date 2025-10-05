@@ -57,4 +57,9 @@ public class User {
     public Long getId() {
         return id;
     }
+
+    // Setter added to allow constructing reference by ID (no DB fetch needed)
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

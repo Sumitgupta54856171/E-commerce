@@ -49,6 +49,7 @@ public class GlobalExceptionHandler {
         body.setError(HttpStatus.BAD_REQUEST.getReasonPhrase());
         body.setMessage(e.getMessage());
         body.setTimestamp(Instant.now().toString());
+        body.setPath(request.getRequestURI());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
     }
 }

@@ -38,6 +38,10 @@ public class Itemsdetail {
     @Column(nullable = false)
     private int discountpirce;
 
+
+
+    @Column(nullable = true)
+    private String email;
     public String getEmail() {
         return email;
     }
@@ -45,9 +49,6 @@ public class Itemsdetail {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    @Column(nullable = false)
-    private String email;
     // Persist a copy of the user's email to satisfy existing DB NOT NULL constraint on product.email
 
     // Accept flat user_id from JSON while not persisting it directly

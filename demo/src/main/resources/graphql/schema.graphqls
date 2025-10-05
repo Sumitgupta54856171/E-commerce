@@ -1,0 +1,18 @@
+type Showitems {
+    id: ID
+    productName: String
+    productPrice: Int
+    productQuantity: String
+    image: String
+    productDescription: String
+    category: String
+    productBrand: String
+    productColor: String
+    user_id: Int
+    dp: Int
+}
+
+type Query {
+    getProductbyID(id: ID!): Showitems
+    getAllProducts: [Showitems]
+}

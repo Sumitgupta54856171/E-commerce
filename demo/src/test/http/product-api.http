@@ -1,0 +1,9 @@
+### GET request to example server
+POST http://localhost:9091/graphql
+Content-Type: application/json
+
+{
+  "query": "query { getProductbyID(id: 1) { id productName productPrice } }"
+}
+
+###

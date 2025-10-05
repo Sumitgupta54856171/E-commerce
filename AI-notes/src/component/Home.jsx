@@ -2,6 +2,7 @@ import Slide from "./Slide";
 import CategoryGrid from "./Showcase";
 import Itemlist from "./Itemlist";
 
+
 function Home() {
     return (
         <>
@@ -33,6 +34,7 @@ function Home() {
                 <section className="text-black">
                     <Itemlist></Itemlist>
                 </section>
+
             </div>
             <footer className="text-black">
                 <p>footer</p>
