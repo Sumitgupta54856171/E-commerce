@@ -16,6 +16,8 @@ public class Productmap {
 
   @Autowired
   private Productrepositery productrepositery;
+
+
     public List<Productdto> getproducts(){
       List<Itemsdetail> items = productrepositery.findAll();
         return items.stream()
@@ -44,12 +46,12 @@ pro.setId(itemsdetail.getId());
 pro.setCategory(itemsdetail.getCategory());
 pro.setProductBrand(itemsdetail.getProductbrand());
 pro.setProductColor(itemsdetail.getProductcolor());
-pro.setImage(itemsdetail.getImage());
-pro.setdp(itemsdetail.getdp());
-pro.setProductDescription(itemsdetail.getProductdescription());
+pro.setDetails(itemsdetail.getDetails());
+pro.setProductQuantity(itemsdetail.getProductquantity());
+pro.setProducSpecification(itemsdetail.getSpecification());
 pro.setProductPrice(itemsdetail.getProductprice());
 pro.setProductName(itemsdetail.getProductname());
-pro.setUser_id(itemsdetail.getUser().getId().intValue());
+pro.setUser_id(itemsdetail.getUser().getId());
 
 return pro;
     }

@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.config.Jwtconfig;
 import com.example.demo.repositery.Productrepositery;
 import com.example.demo.repositery.Userrepositery;
 import com.example.demo.dto.Productdto;
@@ -10,6 +11,7 @@ import com.example.demo.map.Productmap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CookieValue;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,11 +22,17 @@ public class Productservice {
     private Productrepositery productrepositery;
   @Autowired
   private Userrepositery Userrepositery;
+  @Autowired
+  private Jwtconfig jwtconfig;
 @Autowired
 private Productmap productmap;
 
   public Itemsdetail addproduct(Itemsdetail itemsdetail){
       System.out.println("check the prodct is :"+itemsdetail);
+
+
+
+
 
       // Hydrate user from transient user_id if provided
       try {
@@ -42,7 +50,7 @@ private Productmap productmap;
       if (itemsdetail.getUser() == null || itemsdetail.getUser().getId() == null) {
           throw new Validerror("user_id is required");
       }
-      if (itemsdetail.getdp() <= 0) {
+      if (itemsdetail.getDiscountpirce() <= 0) {
           throw new Validerror("discountprice is required");
       }
 

@@ -12,6 +12,7 @@ type Showitems {
     dp: Int
 }
 
+
 type Query {
     getProductbyID(id: ID!): Showitems
     getAllProducts: [Showitems]

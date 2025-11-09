@@ -2,7 +2,10 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.Productdto;
 import com.example.demo.entity.Itemsdetail;
+import com.example.demo.entity.User;
 import com.example.demo.map.Productmap;
+import com.example.demo.repositery.Productrepositery;
+import com.example.demo.repositery.Userrepositery;
 import com.example.demo.service.Productservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,11 +22,23 @@ public class Productcontroller {
 private Productservice productservice;
     @Autowired
     private Productmap productmap;
+    @Autowired
+    private Userrepositery userrepositery;
+    @Autowired
+    private Productrepositery productrepositery;
 
     @PostMapping("/add")
-    public Itemsdetail addproduct(@RequestBody Itemsdetail itemsdetail){
+    public Itemsdetail addproduct(@RequestBody Itemsdetail itemsdetail,@CookieValue(value="email") String email){
         System.out.println("product is added"+itemsdetail);
-        return productservice.addproduct(itemsdetail);
+       Optional<User>  userOptional= userrepositery.findByEmail(email);
+       if(userOptional.isPresent()){
+           itemsdetail.setUser(userOptional.get().getId());
+           return productservice.addproduct(itemsdetail);
+       }{
+          throw new RuntimeException("user is not found");
+        }
+
+
     }
     @GetMapping("/items")
          public ResponseEntity<List<Productdto>> getallproduct(){

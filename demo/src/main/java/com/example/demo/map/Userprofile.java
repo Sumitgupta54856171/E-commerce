@@ -20,7 +20,7 @@ public Userdto getuser(String email){
 public Userdto usermapdto(User user){
     Userdto userdto = new Userdto();
     userdto.setEmail(user.getEmail());
-    user.setRole(user.getRole());
+    userdto.setRole(user.getRole());
     userdto.setId(user.getId());
     userdto.setUsername(user.getUsername());
     return userdto;

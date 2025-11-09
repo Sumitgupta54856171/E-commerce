@@ -12,4 +12,5 @@ public interface Productrepositery extends JpaRepository<Itemsdetail, Integer> {
     Optional<Itemsdetail> findByProductname(String productname);
     List<Itemsdetail> findByCategory(String category);
 
+
 }
