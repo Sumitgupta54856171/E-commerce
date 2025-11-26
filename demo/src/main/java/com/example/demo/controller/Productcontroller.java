@@ -32,7 +32,7 @@ private Productservice productservice;
         System.out.println("product is added"+itemsdetail);
        Optional<User>  userOptional= userrepositery.findByEmail(email);
        if(userOptional.isPresent()){
-           itemsdetail.setUser(userOptional.get().getId());
+           itemsdetail.setUser(userOptional.get());
            return productservice.addproduct(itemsdetail);
        }{
           throw new RuntimeException("user is not found");

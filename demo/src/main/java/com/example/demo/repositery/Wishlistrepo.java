@@ -1,12 +1,14 @@
 package com.example.demo.repositery;
 
-import com.example.demo.entity.Cartitem;
+
+import com.example.demo.entity.Wishlist;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface Cartrepositery extends JpaRepository<Cartitem,Long> {
-List<Cartitem> findByUserId(Long id);
+public interface Wishlistrepo extends JpaRepository<Wishlist,Long> {
+    List<Wishlist> findByUserId(Long id);
+
 }
