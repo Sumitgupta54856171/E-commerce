@@ -1,8 +1,11 @@
 package com.example.demo.controller;
 
+import com.example.demo.config.Cookies;
+import com.example.demo.config.Jwtconfig;
 import com.example.demo.dto.Productdto;
 import com.example.demo.entity.Itemsdetail;
 import com.example.demo.entity.User;
+import com.example.demo.entity.productdoc;
 import com.example.demo.map.Productmap;
 import com.example.demo.repositery.Productrepositery;
 import com.example.demo.repositery.Userrepositery;
@@ -26,11 +29,16 @@ private Productservice productservice;
     private Userrepositery userrepositery;
     @Autowired
     private Productrepositery productrepositery;
+    @Autowired
+    private Jwtconfig jwtconfig;
 
     @PostMapping("/add")
-    public Itemsdetail addproduct(@RequestBody Itemsdetail itemsdetail,@CookieValue(value="email") String email){
+    public String addproduct(@RequestBody Itemsdetail itemsdetail,@CookieValue(value="email") String email){
         System.out.println("product is added"+itemsdetail);
-       Optional<User>  userOptional= userrepositery.findByEmail(email);
+        System.out.println(email);
+        String useremail =jwtconfig.getEmail(email);
+        System.out.println(useremail);
+       Optional<User>  userOptional= userrepositery.findByEmail(useremail);
        if(userOptional.isPresent()){
            itemsdetail.setUser(userOptional.get());
            return productservice.addproduct(itemsdetail);
@@ -51,6 +59,10 @@ private Productservice productservice;
     @GetMapping("/search/{query}")
     public ResponseEntity<List<Productdto>> getallproduct(@PathVariable("query") String query){
         return productservice.getsearchproduct(query);
+    }
+    @PostMapping("/serchsave")
+    public String saveproduct(@RequestBody productdoc productDto){
+        return productservice.saveproductserch(productDto);
     }
 
 }

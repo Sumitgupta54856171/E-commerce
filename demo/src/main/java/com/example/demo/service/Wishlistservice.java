@@ -25,10 +25,10 @@ public class Wishlistservice {
             return e.getMessage();
         }
     }
-    public ResponseEntity<List<Wishlist>> getallwishlist(Long userid){
-        if(userid == null){return ResponseEntity.ok().body(null);}
+    public ResponseEntity<List<Wishlist>> getallwishlist(Long user_id){
+        if(user_id == null){return ResponseEntity.ok().body(null);}
         try{
-            ResponseEntity.ok(wishlistrepo.findByUserId(userid));
+            ResponseEntity.ok(wishlistrepo.findByUserId(user_id));
         }catch (Exception e){
             return ResponseEntity.ok(null);
         }

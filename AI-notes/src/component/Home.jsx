@@ -1,6 +1,7 @@
 import Slide from "./Slide";
 import CategoryGrid from "./Showcase";
 import Itemlist from "./Itemlist";
+import MySwiper from "./Slider";
 
 
 function Home() {
@@ -31,13 +32,17 @@ function Home() {
                         <img src="https://www.leafstudios.in/cdn/shop/files/1_1099cd20-7237-4bdf-a180-b7126de5ef3d.png?v=1722230645" className="size-100 m-4"></img>
                     </div>
                 </div>
-                <section className="text-black">
+                <section className="text-black ">
                     <Itemlist></Itemlist>
+                </section>
+
+                <section className="text-black border-2 rounded-xl p-3 mt-4">
+                    <MySwiper />
                 </section>
 
             </div>
             <footer className="text-black">
-                <p>footer</p>
+                
             </footer>
         </>
     );

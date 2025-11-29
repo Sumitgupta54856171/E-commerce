@@ -16,8 +16,8 @@ public class Searchcontroller {
     @Autowired
     private Searchservice productservice;
 
-@GetMapping
-public Object search(@RequestParam String query){
+@GetMapping("/query")
+public Object search(@RequestParam("q") String query){
     return productservice.searchProduct(query);
 }
 

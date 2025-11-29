@@ -1,7 +1,9 @@
 package com.example.demo.service;
 
 import com.example.demo.config.Jwtconfig;
+import com.example.demo.entity.productdoc;
 import com.example.demo.repositery.Productrepositery;
+import com.example.demo.repositery.Productserarchbyelk_stack;
 import com.example.demo.repositery.Userrepositery;
 import com.example.demo.dto.Productdto;
 import com.example.demo.entity.Itemsdetail;
@@ -9,9 +11,9 @@ import com.example.demo.entity.User;
 import com.example.demo.exception.Validerror;
 import com.example.demo.map.Productmap;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.CookieValue;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,8 +28,12 @@ public class Productservice {
   private Jwtconfig jwtconfig;
 @Autowired
 private Productmap productmap;
+@Autowired
+private Productserarchbyelk_stack productserarchbyelk_stack;
+@Autowired
+private ElasticsearchOperations elasticsearchOperations;
 
-  public Itemsdetail addproduct(Itemsdetail itemsdetail){
+  public String addproduct(Itemsdetail itemsdetail){
       System.out.println("check the prodct is :"+itemsdetail);
 
 
@@ -40,6 +46,8 @@ private Productmap productmap;
               User user = Userrepositery.findById(itemsdetail.getUser_id())
                       .orElseThrow(() -> new Validerror("Invalid user_id"));
               itemsdetail.setUser(user);
+              // Save to Elasticsearch (return value is not used)
+
           }
       } catch (Exception e) {
           // If any exception occurs during user hydration, wrap as validation error
@@ -54,9 +62,9 @@ private Productmap productmap;
           throw new Validerror("discountprice is required");
       }
 
+      productrepositery.save(itemsdetail);
 
-
-      return productrepositery.save(itemsdetail);
+      return "save the product successfully";
 
   }
   public ResponseEntity<List<Productdto>> getallproduct(){
@@ -67,6 +75,10 @@ private Productmap productmap;
   }
   public ResponseEntity<List<Productdto>> getsearchproduct(String query){
     return ResponseEntity.ok(productmap.getsearchproducts(query));
+  }
+  public String saveproductserch(productdoc productDoc){
+      elasticsearchOperations.save(productDoc);
+      return "save the product successfully";
   }
 
 

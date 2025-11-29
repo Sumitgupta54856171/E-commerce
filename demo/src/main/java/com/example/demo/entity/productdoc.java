@@ -2,8 +2,8 @@ package com.example.demo.entity;
 
 
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.*;
 
@@ -11,8 +11,9 @@ import org.springframework.data.elasticsearch.annotations.*;
 import java.util.List;
 import java.util.Map;
 
-@Document(indexName = "products")
-public class ProductDoc {
+@Data
+@Document(indexName = "product")
+public class productdoc {
 
     @Id
     private String id;
@@ -20,24 +21,18 @@ public class ProductDoc {
     @Field(type = FieldType.Text, name = "productname")
     private String productname;
 
-    @Field(type = FieldType.Text,name = "description")
-    private String description;
 
     @Field(type = FieldType.Keyword, name = "productbrand")
     private String productbrand;
 
     @Field(type = FieldType.Keyword, name = "category")
     private String category;
-
+    @Field(type = FieldType.Integer,name="user_id")
+    private Long user_id;
     @Field(type = FieldType.Double, name = "productprice")
     private Double productprice;
-
     @Field(type = FieldType.Integer,name = "productquantity")
     private Integer productquantity;
-
-    @Field(type = FieldType.Boolean,name = "inStock")
-    private Boolean inStock;
-
     @Field(type = FieldType.Text,name = "productcolor")
     private List<String> details;
 
