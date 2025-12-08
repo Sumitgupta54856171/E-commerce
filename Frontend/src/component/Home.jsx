@@ -2,6 +2,7 @@ import Slide from "./Slide";
 import CategoryGrid from "./Showcase";
 import Itemlist from "./Itemlist";
 import MySwiper from "./Slider";
+import ShoppingCartPage from "./Card";
 
 
 function Home() {
@@ -14,6 +15,7 @@ function Home() {
                 </div>
                 <div className="border-0 border-blue-200">
                     <CategoryGrid />
+                    <ShoppingCartPage/>
                 </div>
                 <section className="text-black">
                     <p>welcome</p>
