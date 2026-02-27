@@ -36,7 +36,10 @@ private Userservice userservice;
    return  userservice.findByEmail(email);
 }
 
-
+    @PostMapping("/auth")
+    public ResponseEntity<Boolean> auth(@RequestBody String token){
+    return userservice.authservice(token);
+    }
 
 
 

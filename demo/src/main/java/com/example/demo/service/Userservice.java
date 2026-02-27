@@ -76,4 +76,17 @@ public class Userservice {
           throw new Validerror("Invalid email");
       }
     }
+    public ResponseEntity<Boolean> authservice(String token) {
+        if(token.isEmpty() || token == null){
+            ResponseEntity.ok(false);
+        }
+         String email = jwtconfig.getEmail(token);
+        if(email != null){
+            ResponseEntity.ok(false);
+        }
+
+        boolean value = userrepositery.existsByEmail(email);
+        return ResponseEntity.ok(value);
+
+    }
 }
